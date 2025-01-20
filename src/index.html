@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-gradient-to-r from-pink-500 to-red-500 text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Heart Disease Analysis</h1>
+            <nav class="flex space-x-4">
+                <a href="../Reports $ Documentation/eda_desc.html" class="text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg transition">Home</a>
+                <a href="../src/model.html" class="text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg transition">Model Evaluation</a>
+                <button onclick="history.back()" class="text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded-lg transition">Back</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="bg-white py-8">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800">Welcome to Heart Disease Analysis</h2>
+            <p class="mt-4 text-lg text-gray-600">Explore insights and predictions on heart disease using advanced machine learning models.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-8">
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="visualization-buttons">
+            <button onclick="window.location.href='../Visualization/age_distribution_interactive.html'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">bar_chart</span>
+                Age Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/trestbps_distribution_interactive.html'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">scatter_plot</span>
+                Trestbps Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/thalch_distribution_interactive.html'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">show_chart</span>
+                Thalach Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/restecg_distribution.png'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">analytics</span>
+                Rest ECG Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/fbs_distribution.png'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">pie_chart</span>
+                FBS Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/oldpeak_distribution_interactive.html'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">line_weight</span>
+                Oldpeak Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/sex_distribution.png'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">people</span>
+                Sex Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/slope_distribution.png'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">terrain</span>
+                Slope Distribution
+            </button>
+            <button onclick="window.location.href='../Visualization/thal_distribution.png'"
+                class="bg-red-500 text-white py-3 px-4 rounded-lg shadow-md hover:bg-red-600 transition-all transform hover:scale-105 flex items-center justify-center">
+                <span class="material-icons mr-2">grid_view</span>
+                Thal Distribution
+            </button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Heart Disease Analysis Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function testModel(data) {
+            try {
+                console.log("Sending test data:", data);
+
+                // Send data to backend API
+                const response = await axios.post("http://localhost:5000/predict", { data });
+
+                // Display prediction results
+                const { prediction, confidence } = response.data;
+                alert(`Prediction: ${prediction}\nConfidence: ${confidence}`);
+            } catch (error) {
+                console.error("Error occurred while fetching prediction:", error);
+                alert("An error occurred while predicting.");
+            }
+        }
+    </script>
+</body>
+
+</html>

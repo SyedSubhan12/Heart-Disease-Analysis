@@ -1,0 +1,19 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./src       # Path to backend directory
+    ports:
+      - "5000:5000"        # Map backend to port 5000
+    volumes:
+      - ./src:/app         # Mount backend directory for hot-reloading
+    command: ["npm", "start"] # Start command for backend
+
+  frontend:
+    build:
+      context: ./app       # Path to frontend directory
+    ports:
+      - "3000:3000"        # Map frontend to port 3000
+    volumes:
+      - ./app:/app         # Mount frontend directory for hot-reloading
+    command: ["npm", "start"] # Start command for frontend
